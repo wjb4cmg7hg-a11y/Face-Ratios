@@ -1,0 +1,8 @@
+{
+  "name": "face-ratios-workspace",
+  "private": true,
+  "workspaces": [
+    "artifacts/*",
+    "lib/*"
+  ]
+}

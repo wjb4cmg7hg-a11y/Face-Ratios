@@ -29,11 +29,12 @@ jobs:
         with:
           version: 'latest'
 
-      - name: Install dependencies
+      - name: Install workspace dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build Face-Ratios
-        run: pnpm --filter @workspace/face-ratio run build
+        working-directory: ./artifacts/face-ratio
+        run: pnpm run build
         env:
           PORT: 22567
           BASE_PATH: /Face-Ratios/
