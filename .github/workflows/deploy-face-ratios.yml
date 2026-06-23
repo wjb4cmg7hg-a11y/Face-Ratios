@@ -23,7 +23,6 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: '22.20.0'
-          cache: 'pnpm'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -39,10 +38,12 @@ jobs:
           PORT: 22567
           BASE_PATH: /Face-Ratios/
 
-      - name: Upload pages artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Deploy to GitHub Pages branch
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: artifacts/face-ratio/dist/public
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./artifacts/face-ratio/dist/public
+          publish_branch: gh-pages
+          user_name: github-actions
+          user_email: github-actions@github.com
+          commit_message: Deploy Face-Ratios to GitHub Pages
